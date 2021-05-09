@@ -14,7 +14,7 @@ class Shippingrepository:
         shipping = {}
         if id_ in shipping_list[id_]:
             shipping = shipping_list[id_]
-        return Shipping.construct({shipping})
+        return Shipping.construct(shipping)
 
 
 
@@ -55,7 +55,7 @@ class Deliveryrepository:
         delivery = {}
         if user in delivery_list[id_]:
             batch = delivery_list[user]
-        return Delivery.construct({delivery})
+        return Delivery.construct(delivery)
 
     async def add_delivery(self, model: Delivery):
         values = {
