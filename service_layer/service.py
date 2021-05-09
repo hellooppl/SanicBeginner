@@ -26,10 +26,10 @@ def add_shipping(validated_data: abstract.AddShipping) -> None:  # call commmand
     repo.add_batch(shipping)
 
 
-def update_batch_quantity(id_:UUID,validated_data: abstract.UpdateQuantity) -> None:
-    repo= BatchRepository()
-    batch = repo.get(id_)
-    batch = handler.update_batch(
+def update_shipping_date(id_:UUID,validated_data: abstract.UpdateDateToShip) -> None:
+    repo= ShippingRepository()
+    shipping = repo.get(id_)
+    batch = handler.update_shipping(
         command.UpdadteBatchQuantity(
             model=Batch,quantity=validated_data.quatity
         )

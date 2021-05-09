@@ -12,11 +12,11 @@ async def add_shipping(cmd: AddShipping) -> model.Shipping:
     )
 
 
-# async def update_shipping(cmd: Update_date_to_ship) -> model.Shipping:
-#     if isinstance(cmd,UpdadteBatchQuantity):
-#         return cmd.batch.update({
-#             'quantity':cmd.quantity
-#         })
+async def update_shipping(cmd: Update_date_to_ship) -> model.Shipping:
+    if isinstance(cmd,UpdateDateToShip):
+        return cmd.shipping.update({
+            'date_to_ship':cmd.date_to_ship
+        })
     
 
 

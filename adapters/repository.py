@@ -50,7 +50,6 @@ class Shippingrepository:
 
 
 class Deliveryrepository:
-
     async def get(self, user: UUID) -> Delivery:
         delivery = {}
         if user in delivery_list[id_]:

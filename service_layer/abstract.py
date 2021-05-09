@@ -5,7 +5,6 @@ from uuid import UUID, uuid4
 
 
 class AddShipping(BaseModel):
-    _id: UUID
     category: str
     cost: float
     regionId: int
@@ -15,10 +14,12 @@ class AddShipping(BaseModel):
 
 
 class AddDelivery(BaseModel):
-    user: UUID
     name: str
     post: str
     permission: str
     available:bool
     task : set() = None
 
+
+class UpdateDateToShip(BaseModel):
+    date_to_ship: str  
