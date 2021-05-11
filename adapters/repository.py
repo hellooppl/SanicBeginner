@@ -43,7 +43,7 @@ class Shippingrepository(AbstractRepository):
             if self[i]["id_"] == values.id_:
                 self[i].update(values)
 
-    def delete_shipping(self, model: Shipping):
+    def delete(self, model: Shipping):
         if self.id_ in model.id_:
             del model.id_
 
