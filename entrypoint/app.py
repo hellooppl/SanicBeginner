@@ -1,29 +1,24 @@
 from sanic import Sanic
+import os
 from sanic.response import text, json
-from . import service_layer,abstract
+from .service_layer import services,abstract
 
 app = Sanic(__name__)
 
-
-@app.route('/test',methods=["POST","PUT","GET"])
-async def handler(request):
-    if request.method == "POST":
-        print(request.json["delivery_id"])
-        return text('accepted')
-    return text('OKAYY......')
-
-@app.route("/agent", methods=['GET', 'POST'])
+@app.route("/shipping", methods=['GET', 'POST'])
 def add_new_agent(request):
     service.add_shipping(validated_data=abstract.AddShipping(
-        category='food',
-        cost='202',
-        regionId=10,
-        orderId=22,
-        insurance=55.2,
-        date_to_ship= "2010-8-10"
+        category=request.json["category"],
+        cost=request.json["cost"],
+        regionId=request.json["regionId"],
+        orderId=request.json["orderId"],
+        insurance=request.json["insurance"],
+        date_to_ship= request.json["date_to_ship"]
     ))
     return Text("success")
 
 
 if __name__ == "__main__":
+    s = os.path.abspath("service_layer")
+    print(s)
     app.run(debug=True)
