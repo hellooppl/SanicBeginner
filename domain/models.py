@@ -10,6 +10,7 @@ class Shipping(BaseModel):
     orderId: int
     insurance: float
     date_to_ship: str    
+    is_deleted: bool=False
 
     class Config:
         title = "Shipping"
@@ -24,6 +25,7 @@ def shipping_factory(
     orderId: int,   
     insurance: float,
     date_to_ship: str,
+    is_deleted:bool=False,
 ) -> Shipping : 
     return Shipping(
         id =id,
@@ -32,7 +34,8 @@ def shipping_factory(
         regionId= regionId,
         orderId=orderId,
         insurance= insurance,
-        date_to_shi= date_to_ship
+        date_to_shi= date_to_ship,
+        is_deleted=is_deleted
 
     )
 
@@ -44,6 +47,7 @@ class Delivery(BaseModel):
     permission: str
     available:bool
     task : set() = None
+    is_deleted:bool = False
 
     class Config:
         title = "Delivery"
@@ -76,6 +80,7 @@ def delivery_factory(
     permission: str,
     available:bool,
     task : set() = None,
+    is_deleted :bool = False
 ) -> Delivery : 
     return Delivery(
     user= user,
@@ -83,5 +88,6 @@ def delivery_factory(
     post= post,
     permission= permission,
     available=available,
-    task = task
+    task = task,
+    is_deleted=is_deleted
     )

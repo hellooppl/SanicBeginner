@@ -26,8 +26,9 @@ class Shippingrepository(AbstractRepository):
             "regionId": model.regionId,
             "orderId": model.orderId,
             "insurance": model.insurance,
-            "date_to_ship": model.date_to_ship
+            "date_to_ship": model.date_to_ship,
         }
+        model.append(values)
     
     def update(self, model: Shipping) -> None:
         values = {
@@ -43,9 +44,14 @@ class Shippingrepository(AbstractRepository):
             if self[i]["id_"] == values.id_:
                 self[i].update(values)
 
-    def delete(self, model: Shipping):
-        if self.id_ in model.id_:
-            del model.id_
+
+    def delete(self, id_: UUID):
+        for i in range(len(self)+1): 
+            if self[i]["id_"] == values.user:
+                self[i]["is_deleted"] == False
+            return "{user} is deleted successfully"
+
+    
 
 
 class Deliveryrepository:
@@ -80,7 +86,8 @@ class Deliveryrepository:
             if self[i]["user"] == values.user:
                 self[i].update(values)
 
-    def delete(self, model: Delivery):
-        if self.user in model.user:
-            del model.user
-            return "{model.user} is deleted successfully"
+    def delete(self, user: UUID):
+        for i in range(len(self)+1): 
+            if self[i]["user"] == values.user:
+                self[i]["is_deleted"] == False
+            return "{user} is deleted successfully"
