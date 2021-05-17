@@ -15,13 +15,8 @@ class AbstractUnitOfWork(abc.ABC):
 
     def commit(self):
         self._commit()
-        self.publish_events()
 
-    def publish_events(self):  #(2)
-        for single in self.repo.seen:  #(3)
-            while single.events:
-                event = single.events.pop(0)
-                messagebus.handle(event)
+
 
     @abc.abstractmethod
     def _commit(self):

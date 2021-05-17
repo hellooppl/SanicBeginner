@@ -17,6 +17,12 @@ class DeliveryUnitOfWork(AbstractUOW):
         super.__exit__(*args)
         self.committed= True
 
+    async def publish_events(self):  #(2)
+        for single in self.delivery.seen:  #(3)
+            while single.events:
+                event = single.events.pop(0)
+                messagebus.handle(event)
+
     async def _commit(self):
         self.committed=True
         self.publish_events()
