@@ -1,3 +1,5 @@
+from typing import List, Optional
+from domain import events
 from pydantic import BaseModel
 from datetime import date
 from uuid import UUID
@@ -48,6 +50,8 @@ class Delivery(BaseModel):
     available:bool
     task : set() = None
     is_deleted:bool = False
+    events : Optional(List[events.Event])=[]
+
 
     class Config:
         title = "Delivery"
@@ -55,8 +59,11 @@ class Delivery(BaseModel):
         extra = "Forbid"
 
     def allocate(self, order:Shipping):
-        self.available = False
-        self.task.add(order)
+        if self.available == False:
+            self.events.append(events.NotAvailable(self.user))
+            return None
+        else:
+            self.task.add(order)
     
     def can_deliver(self, order:Shipping) -> bool:
         return self.available

@@ -1,15 +1,17 @@
-from ..domain.model import Delivery, Shipping
+from ..domain.models import Delivery, Shipping
 
 
 from typing import List, Dict
 from uuid import UUID
-
-from randomthings.app import data_product_list, data_batch_list, data_category
-
-
+from ..storage import shipping_list, delivery_list
+from domain import models
 
 class Shippingrepository(AbstractRepository):
     # Product model add , update and delete operations
+
+    def __init__(self) -> None:
+        super().__init__()
+        
     def get(self, id_: UUID) -> Shipping:
         shipping = {}
         if id_ in shipping_list[id_]:
@@ -18,17 +20,18 @@ class Shippingrepository(AbstractRepository):
 
 
 
-    def add(self, batch: model.Shipping):
+    def add(self, batch: models.Shipping):
         values = {
-            "_id": model._id,
-            "category": model.category,
-            "cost": model.cost,
-            "regionId": model.regionId,
-            "orderId": model.orderId,
-            "insurance": model.insurance,
-            "date_to_ship": model.date_to_ship,
+            "_id": models._id,
+            "category": models.category,
+            "cost": models.cost,
+            "regionId": models.regionId,
+            "orderId": models.orderId,
+            "insurance": models.insurance,
+            "date_to_ship": models.date_to_ship,
         }
-        model.append(values)
+        models.append(values)
+        return models._id
     
     def update(self, model: Shipping) -> None:
         values = {
@@ -45,7 +48,17 @@ class Shippingrepository(AbstractRepository):
                 self[i].update(values)
 
 
-    def delete(self, id_: UUID):
+    def delete(self, model: Shipping):
+        values = {
+            "id_": model.id_,
+            "category": model.category,
+            "cost": model.cost,
+            "regionId": model.regionId,
+            "orderId": model.orderId,
+            "insurance": model.insurance,
+            "date_to_ship": model.date_to_ship,
+        }
+
         for i in range(len(self)+1): 
             if self[i]["id_"] == values.user:
                 self[i]["is_deleted"] == False
@@ -57,7 +70,7 @@ class Shippingrepository(AbstractRepository):
 class Deliveryrepository:
     def get(self, user: UUID) -> Delivery:
         delivery = {}
-        if user in delivery_list[id_]:
+        if user in delivery_list[user]:
             batch = delivery_list[user]
         return Delivery.construct(delivery)
 
@@ -86,7 +99,17 @@ class Deliveryrepository:
             if self[i]["user"] == values.user:
                 self[i].update(values)
 
-    def delete(self, user: UUID):
+    def delete(self, model:Shipping):
+        values = {
+            "id_": model.id_,
+            "category": model.category,
+            "cost": model.cost,
+            "regionId": model.regionId,
+            "orderId": model.orderId,
+            "insurance": model.insurance,
+            "date_to_ship": model.date_to_ship,
+        }
+
         for i in range(len(self)+1): 
             if self[i]["user"] == values.user:
                 self[i]["is_deleted"] == False

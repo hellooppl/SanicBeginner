@@ -23,3 +23,6 @@ class AddDelivery(BaseModel):
 
 class UpdateDateToShip(BaseModel):
     date_to_ship: str  
+
+class AddTask(BaseModel):
+    task:set()

@@ -1,0 +1,29 @@
+UOW Atomic  property handle garne 
+
+all sets are considered as  a unit and then single code is considered as more than enough
+
+the Unit of Work (UoW) pattern is our abstraction over the idea of atomic operations. It will allow us to finally and fully decouple our service layer from the data layer.
+
+
+
+The Unit of Work pattern is used to group one or more operations
+(usually database CRUD operations) into a single transaction or “unit of work”
+  so that all operations either pass or fail as one. In simple words we can say that 
+  for a specific user action, say booking on a website, all the transactions like 
+  insert/update/delete and so on are done in one single transaction, rather than doing 
+  multiple database transactions. This means, one unit of work here involves 
+  insert/update/delete operations, all in one single transaction so that all operations
+   either pass or fail as one
+
+
+   for example we are creating a user profile and it has associated differetn entity then 
+   we need to perform operation in such a way that it acts a unit (((ACID >> A for atomic 
+   )))
+
+
+   >>  This layer recceives the instance of DbContext
+
+Different operation will have single instance of DbContext
+
+
+

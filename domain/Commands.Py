@@ -1,9 +1,5 @@
 from pydantic import BaseModel, HttpUrl
-from datetime import datetime
-from typing import Optional
-from uuid import UUID, uuid4
-
-from allocation.domain.model import Delivery, Shipping
+from .models import Delivery, Shipping
 
 
 class AddShipping(BaseModel):
@@ -30,5 +26,8 @@ class AddDelivery(BaseModel):
     available:bool
     task : set() = None
 
-class Add_task(DeliveryCommand):
+
+class DeliveryCommand(BaseModel):
+    delivery: Delivery
+class Update_task(DeliveryCommand):
     task = set()
