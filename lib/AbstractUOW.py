@@ -1,5 +1,6 @@
 from ..adapters import repository
 import abc
+from ..service_layer import messagebus
 
 class AbstractUnitOfWork(abc.ABC):
     batches: repository.AbstractRepository
