@@ -5,7 +5,7 @@ async def handle(event: events.Event):
 
 
 async def not_available(event: events.NotAvailable):
-    print('The delivery agent is not avialable currently')
+    print('Status change required')
 
 
 HANDLERS = {
