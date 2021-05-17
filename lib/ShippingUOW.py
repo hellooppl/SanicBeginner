@@ -15,7 +15,7 @@ class ShippingUnitOfWork(AbstractUOW):
         super.__exit__(*args)
         self.committed= True
 
-    async def commit(self):
+    async def _commit(self):
         self.committed=True
 
     async def rollback(self):

@@ -17,15 +17,10 @@ class DeliveryUnitOfWork(AbstractUOW):
         super.__exit__(*args)
         self.committed= True
 
-    async def commit(self):
+    async def _commit(self):
         self.committed=True
         self.publish_events()
 
     async def rollback(self):
         self.rollback()  
 
-    def publish_events(self):  #(2)
-        for shipping in self.shipping.seen:  #(3)
-            while shipping.events:
-                event = shipping.events.pop(0)
-                messagebus.handle(event)
